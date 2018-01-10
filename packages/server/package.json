@@ -1,0 +1,27 @@
+{
+  "name": "es-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node-dev index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FlyingWithYou/es-server.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FlyingWithYou/es-server/issues"
+  },
+  "homepage": "https://github.com/FlyingWithYou/es-server#readme",
+  "dependencies": {
+    "koa": "^2.4.1",
+    "koa-better-body": "^3.0.4",
+    "koa-router": "^7.3.0",
+    "mysql": "^2.15.0"
+  }
+}
