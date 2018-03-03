@@ -3,7 +3,7 @@
 		
 	</div>
 </template>
-<style>
+<style scoped>
 	.login-body {
 		position: relative;
 		min-height: 750px;
@@ -22,7 +22,7 @@
 	}
 </style>
 <script>
-	export default {
-		name: 'login-body'
-	}
+export default {
+	name: "login-body"
+};
 </script>

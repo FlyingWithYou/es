@@ -4,20 +4,20 @@
 	</div>
 </template>
 <script>
-	import  login  from './login';
-	export default {
-		name: 'app',
-		components: {
-			login
-		}
+import  login  from "./login";
+export default {
+	name: "app",
+	components: {
+		login
 	}
+};
 </script>
-<style>
+<style scoped>
 	body {
 		margin: 0;
 		padding: 0;
 	}
-	.content {
+	.content{
 		margin: 0 auto;
 	}
 </style>

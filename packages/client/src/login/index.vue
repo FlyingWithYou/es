@@ -6,20 +6,20 @@
 	</div>
 </template>
 <script>
-	import HeaderBar from './header';
-	import LoginBody from './body';
-	import FooterBar from './footer';
-	export default {
-		name: 'login',
-		data: function(){
-			return {
-				show: "Login"
-			}
+import HeaderBar from "./header";
+import LoginBody from "./body";
+import FooterBar from "./footer";
+export default {
+	name: "login",
+	data: function(){
+		return {
+			show: "Login"
+		};
 	 	},
-		components: {
-			HeaderBar,
-			LoginBody,
-			FooterBar
-		}
+	components: {
+		HeaderBar,
+		LoginBody,
+		FooterBar
 	}
+};
 </script>

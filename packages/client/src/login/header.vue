@@ -1,7 +1,7 @@
 <template>
 	<header><a href="/" class="meizu-logo"><i class="logo-icon"></i></a></header>
 </template>
-<style>
+<style scoped>
 header {
 	margin: 0;
 	top:0;
@@ -31,7 +31,7 @@ header a.meizu-logo {
 	
 </style>
 <script>
-	export default {
-		name: 'header-bar',
-	}
+export default {
+	name: "header-bar",
+};
 </script>
