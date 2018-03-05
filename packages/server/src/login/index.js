@@ -22,6 +22,7 @@ function lookUser(name, pwd){
 *
 */
 async function login(ctx, next) {
+	console.log(ctx.req, ">>>>>>>>");
 	const {name, pwd} = ctx.request.fields;
 	await lookUser(name, pwd).then(results => {
 		if(results.length){

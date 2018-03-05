@@ -10,7 +10,8 @@ const router = new Router();
 const PORT = 3000;
 
 app.use(body({
-	fields: true
+	encoding: 'utf-8',
+	multipar: true
 }));
 
 app.use(async (ctx, next) => {
@@ -34,6 +35,7 @@ router.get('/', (ctx, next) => {
 router.post("/login", login);
 
 app.use(router.routes());
+
 app.on("error", (error, ctx) => {
 	console.error("server error ", error, ctx);
 });
