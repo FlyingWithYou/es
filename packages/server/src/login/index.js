@@ -22,8 +22,8 @@ function lookUser(name, pwd){
 *
 */
 async function login(ctx, next) {
-	console.log(ctx.req, ">>>>>>>>");
-	const {name, pwd} = ctx.request.fields;
+	console.log(ctx.request.body, "?????????????");
+	const {name, pwd} = ctx.request.body;
 	await lookUser(name, pwd).then(results => {
 		if(results.length){
 			ctx.body = { message: "登陆成功", code:0 };

@@ -20,8 +20,14 @@
   "homepage": "https://github.com/FlyingWithYou/es-server#readme",
   "dependencies": {
     "koa": "^2.4.1",
+    "koa-basic-auth": "^2.0.0",
     "koa-better-body": "^3.0.4",
+    "koa-body": "^2.5.0",
+    "koa-compose": "^4.0.0",
+    "koa-csrf": "^3.0.6",
     "koa-router": "^7.3.0",
-    "mysql": "^2.15.0"
+    "koa-session": "^5.8.1",
+    "mysql": "^2.15.0",
+    "raw-body": "^2.3.2"
   }
 }
