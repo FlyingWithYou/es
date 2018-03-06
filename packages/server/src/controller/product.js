@@ -1,7 +1,24 @@
 const productService = require('../service/product');
-async function show(ctx, next) {
-      ctx.body = await productService.show(1); 
+async function showAll(ctx, next) {
+	const product = await productService.list();
+    ctx.body = product;
     await next();
 }
 
-module.exports = show;
+async function show(ctx, next) {
+	const id = ctx.params.id
+	const product = await productService.show(id);
+    ctx.body = product;
+    await next();
+}
+
+async function add(ctx, next) {
+	const { name, price, description } = ctx.request.body;
+	const product = await productService.add(name, price, description)
+}
+
+module.exports = {
+	showAll,
+	show,
+	add
+};

@@ -1,6 +1,13 @@
 const  Product = require('../model/product');
 
 exports.show =  async function(id) {
-    const  product = await Product.findById(id);
-    return product.dataValues;
+    return Product.findProductById(id);
 }
+
+exports.list = async function() {
+	return Product.findAllProduct();
+}
+
+exports.add = async function(name, price, description) {
+	return Product.insertProduct(name, price, description);
+} 

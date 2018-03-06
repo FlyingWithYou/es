@@ -13,7 +13,7 @@ const JSONStream = require('streaming-json-stringify');
 const koaBody = require('koa-body');
 const login = require('./src/login');
 const login2 = require('./src/login/login2');
-const  show = require('./src/controller/product');
+const { show, showAll, add}  = require('./src/controller/product');
 const pageNotFound = require('./src/404/not-found');
 
 const app = new Koa();
@@ -131,7 +131,9 @@ router.post("/login",  login);
 router.get('/login', login2);
 
 router.get('/index.js', streamFile);
+router.get('/product', showAll);
 router.get('/product/:id', show);
+router.post('/product', add);
 
 router.get('/jss', streamJSON);
 
