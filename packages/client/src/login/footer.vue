@@ -45,7 +45,7 @@
 			</div>
 	</footer>
 </template>
-<style media="screen" scoped>
+<style media="screen" scoped lang="less">
 	.footer {
 		margin: 16px auto;
 		max-width: 1120px;

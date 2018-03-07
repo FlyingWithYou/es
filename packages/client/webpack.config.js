@@ -31,16 +31,23 @@ module.exports = {
 					},
 					loaders: {
 						js: 'babel-loader!eslint-loader',
-						css: "style-loader!css-loader!postcss-loader"
+						css: "style-loader!css-loader!postcss-loader!less-loader"
 					}
 				}
 			},
 		{ 
 			test: /\.(png|svg|jpg|gif)$/, 
-			use: [ "file-loader"]},
+			use: [ "file-loader"]
+		},
 		{
-			 test: /\.(woff|woff2|eot|ttf|otf)$/, 
-			 use: ["file-loader"]}
+			test: /\.(woff|woff2|eot|ttf|otf)$/, 
+			use: ["file-loader"]
+		},
+		{
+			test: /\.(less|css)$/,
+			use: ['style-loader','css-loader','less-loader'],
+		}
+			 
 		]
 	},
 	devtool: 'inline-source-map',
