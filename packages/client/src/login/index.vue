@@ -2,7 +2,7 @@
 	<div>
 		<header-bar></header-bar>
 		<login-body></login-body>
-		<footer-bar></footer-bar>		
+		<footer-bar></footer-bar>
 	</div>
 </template>
 <script>

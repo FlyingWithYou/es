@@ -4,7 +4,7 @@
   "description": "vue meizu",
   "main": "index.js",
   "scripts": {
-    "start": "webpack --watch",
+    "start": "webpack-dev-server",
     "dev": "serve dist",
     "test": "test"
   },

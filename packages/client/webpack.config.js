@@ -43,7 +43,13 @@ module.exports = {
 			 use: ["file-loader"]}
 		]
 	},
-	devtool: "inline-source-map",
+	devtool: 'inline-source-map',
+	devServer: {
+	  	contentBase: path.join(__dirname, "dist"),
+	  	compress: true,
+	  	port: 10010,
+	  	open: true
+	},
 	plugins: [ 
 		new CleanWebpackPlugin(["dist"]),
 		new ExtractTextPlugin("style.css"),
