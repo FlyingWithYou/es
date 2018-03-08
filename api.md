@@ -2,7 +2,7 @@
 url: /login 
 method: post
 
-params:  
+params:    
 |  参数 | 类型 | 描述 |   
 |:-----------:|:------------:|:--------:|  
 | name | string | 用户名 |  
@@ -11,7 +11,7 @@ params:
 # Banner
 ## 添加banner
 url: /banner
-method: post
+method: post  
 | 参数 | 类型 | 描述 |  
 |:-----|:-------:|:-------|  
 | color | string |    |  
