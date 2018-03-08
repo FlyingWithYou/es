@@ -69,6 +69,8 @@
 	
 </style>
 <script>
+import {snatch} from "../utils/networker.js";
+console.log(snatch,'121');
 export default {
 	name: "login-body",
 	data () {
@@ -77,8 +79,15 @@ export default {
 			password: "",
 		};
 	},
+	mounted:function(){
+		this.getBanner();
+	},
 	methods:{
-		
+		getBanner: function(){
+			snatch("http://localhost:3000/login",'post',{name:'dk',pwd:'123'},'application/x-www-form-urlencoded').then(res=>{
+				console.log(res);
+			});
+		}
 	}
 };
 </script>
