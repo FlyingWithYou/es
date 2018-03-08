@@ -85,7 +85,7 @@ app.use(async function(ctx, next) {
 app.keys = ['session key', 'csrf example'];
 
 // app.use(session(app));
-// app.use(koaBody());
+ app.use(koaBody());
 // app.use(new CSRF());
 
 // router.get('/token', token)
