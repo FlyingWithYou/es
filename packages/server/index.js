@@ -12,6 +12,7 @@ const  serve = require('koa-static');
 const JSONStream = require('streaming-json-stringify');
 const koaBody = require('koa-body');
 const login = require('./src/login');
+const bannerRoutes = require('./src/routes/banner');
 const login2 = require('./src/login/login2');
 const { show, showAll, add}  = require('./src/controller/product');
 const pageNotFound = require('./src/404/not-found');
@@ -77,24 +78,24 @@ app.use(async function(ctx, next) {
 	await next();
 });
 
-app.use(auth({ name: 'tj', pass: 'tobi'}));
+// app.use(auth({ name: 'tj', pass: 'tobi'}));
 
 // app.use(async ctx => ctx.body = 'secrect');
 
 app.keys = ['session key', 'csrf example'];
 
-app.use(session(app));
-app.use(koaBody());
-app.use(new CSRF());
+// app.use(session(app));
+// app.use(koaBody());
+// app.use(new CSRF());
 
-router.get('/token', token)
-	  .post('/post', post);
+// router.get('/token', token)
+// 	  .post('/post', post);
 
-
-async function token(ctx, next) {
-	ctx.body = ctx.csrf;
-	await next();
-}		
+app.use(bannerRoutes.routes());
+// async function token(ctx, next) {
+// 	ctx.body = ctx.csrf;
+// 	await next();
+// }		
 
 async function post(ctx,next) {
 	ctx.body = {ok: true};
@@ -129,6 +130,7 @@ router.get('/', (ctx, next) => {
 router.post("/login",  login);
 
 router.get('/login', login2);
+// route.all('/banner', banner);
 
 router.get('/index.js', streamFile);
 router.get('/product', showAll);
