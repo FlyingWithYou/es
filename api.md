@@ -1,5 +1,6 @@
 # 登陆
 url: /login 
+
 method: post
 
 params:    
@@ -11,7 +12,9 @@ params:
 
 # Banner
 ## 添加banner
+
 url: /banner
+
 method: post  
 
 | 参数 | 类型 | 描述 |  
@@ -27,5 +30,7 @@ method: post
 | order | int  | 顺序 |  
 
 ## 获取banner
+
 url: /banner
+
 method: get
