@@ -23,7 +23,9 @@
   },
   "homepage": "https://github.com/FlyingWithYou/es-client#readme",
   "dependencies": {
+    "axios": "^0.18.0",
     "iview": "^2.9.2",
+    "qs": "^6.5.1",
     "vue": "^2.5.13",
     "vue-router": "^3.0.1"
   },

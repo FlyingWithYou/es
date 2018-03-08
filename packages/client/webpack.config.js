@@ -15,7 +15,8 @@ module.exports = {
 			vue$: "vue/dist/vue.esm.js",
 			Assets: path.resolve(__dirname, "src/resource"),
 			Src: path.resolve(__dirname, "src"),
-			Components: path.resolve(__dirname, "src/components")
+			Components: path.resolve(__dirname, "src/components"),
+			Utils: path.resolve(__dirname, "src/utils")
 		}
 	},
 	module: {
@@ -30,7 +31,7 @@ module.exports = {
 						camelCase: true
 					},
 					loaders: {
-						js: 'babel-loader!eslint-loader',
+						js: 'babel-loader',
 						css: "style-loader!css-loader!postcss-loader!less-loader"
 					}
 				}
@@ -55,7 +56,7 @@ module.exports = {
 	  	contentBase: path.join(__dirname, "dist"),
 	  	compress: true,
 	  	port: 10010,
-	  	open: true
+	  	open: true,
 	},
 	plugins: [ 
 		new CleanWebpackPlugin(["dist"]),
