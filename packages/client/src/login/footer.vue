@@ -38,10 +38,10 @@
 		</div>
 		<div class="site-info">
 			<span>©2017 Meizu Telecom Equipment Co., Ltd. All rights reserved.</span>
-			<a href="#">备案号: 粤ICP备13003602号-4</a>
-			<a href="#">经营许可证编号: 粤B2-20130198</a>
+			<a href="#">备案号: 粤ICP备13055452号-1</a>
+			<a href="#">经营许可证编号: 粤B2-20180307</a>
 			<span>营业执照</span>
-			<a href="">粤公网安备 44049102496076号</a>
+			<a href="">粤公网安备 45754456749872号</a>
 			</div>
 	</footer>
 </template>

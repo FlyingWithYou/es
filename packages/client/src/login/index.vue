@@ -19,7 +19,7 @@ export default {
 	components: {
 		HeaderBar,
 		LoginBody,
-		FooterBar
+		FooterBar,
 	}
 };
 </script>
