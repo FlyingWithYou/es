@@ -10,7 +10,10 @@ params:
 | name | string | 用户名 |  
 | pwd   | string | 密码     |  
 
-# Banner
+
+
+# Banner 
+
 ## 添加banner
 
 url: /banner
