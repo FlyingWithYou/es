@@ -72,7 +72,7 @@
 		width: 40px;
 		height: 40px;
 		margin: 4px;
-		background-image: url('../resource/login/images/base.png');
+		background-image: url('../../resource/login/images/base.png');
 		background-repeat: no-repeat;
 	}
 	.weibo {

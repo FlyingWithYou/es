@@ -24,7 +24,7 @@ header a.meizu-logo {
 	width: 100%;
 	height: 100%;
 	display: block;
-	background-image: url("../resource/login/images/base.png");
+	background-image: url("../../resource/login/images/base.png");
 	background-repeat: no-repeat;
 	background-position: -2px -4px;
 }

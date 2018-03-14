@@ -7,7 +7,7 @@
 				<Input class="psw-input" v-model="password" placeholder="密码" size="large"></Input>
 			</div>
 			<div class="login">
-				<Button class="login-btn" type="primary">登录</Button>
+				<Button class="login-btn" type="primary" @click="submit" >登录</Button>
 			</div>
 			<div class="login-bottom">
 				<div>注册</div>
@@ -58,7 +58,7 @@
 	}
 	.login-body::before {
 		position: absolute;
-		background: url('../resource/login/images/banner.png') no-repeat center;
+		background: url('../../resource/login/images/banner.png') no-repeat center;
 		width: 100%;
 		height: 100%;
 		content: ' ';
@@ -69,8 +69,7 @@
 	
 </style>
 <script>
-import {snatch} from "../utils/networker.js";
-console.log(snatch,'121');
+import {snatch} from "Utils/networker.js";
 export default {
 	name: "login-body",
 	data () {
@@ -80,13 +79,29 @@ export default {
 		};
 	},
 	mounted:function(){
-		this.getBanner();
+		
 	},
 	methods:{
-		getBanner: function(){
-			snatch("http://localhost:3000/login",'post',{name:'dk',pwd:'123'},'application/x-www-form-urlencoded').then(res=>{
+		submit: function(){
+			if(!this.accout.trim()){
+				this.$Message.error('请填写账号');
+				return;
+			}
+			if(!this.password.trim()){
+				this.$Message.error('请填写密码');
+				return;
+			}
+			let data = {
+				name: this.accout.trim(),
+				pwd: this.password.trim()
+			};
+			/*snatch("http://localhost:3000/login",'post',data,'application/x-www-form-urlencoded').then(res=>{
 				console.log(res);
-			});
+				if(res.code == 0){
+					this.$router.push('/home');
+				}
+			});*/
+			this.$router.push('/home');
 		}
 	}
 };

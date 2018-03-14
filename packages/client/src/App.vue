@@ -4,7 +4,7 @@
 	</div>
 </template>
 <script>
-import  login  from "./login";
+import  login  from "Components/login";
 export default {
 	name: "app",
 	components: {

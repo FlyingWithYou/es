@@ -1,8 +1,9 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import App from "./App";
-import Login from "./login";
+import Login from "Components/login";
 import iView from 'iview';
+import Home from 'Components/home';
 import 'iview/dist/styles/iview.css';
 
 Vue.use(VueRouter);
@@ -10,7 +11,8 @@ Vue.use(iView);
 
 const routes = [
 	{ path: "/", name: "app", component: App },
-	{ path: "/login", name: "login", component: Login }
+	{ path: "/login", name: "login", component: Login },
+	{ path: "/home", name: "home", component: Home}
 ];
 
 const router = new VueRouter({

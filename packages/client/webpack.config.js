@@ -16,7 +16,8 @@ module.exports = {
 			Assets: path.resolve(__dirname, "src/resource"),
 			Src: path.resolve(__dirname, "src"),
 			Components: path.resolve(__dirname, "src/components"),
-			Utils: path.resolve(__dirname, "src/utils")
+			Utils: path.resolve(__dirname, "src/utils"),
+			Resource: path.resolve(__dirname, "src/resource")
 		}
 	},
 	module: {
