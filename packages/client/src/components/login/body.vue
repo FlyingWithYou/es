@@ -95,13 +95,12 @@ export default {
 				name: this.accout.trim(),
 				pwd: this.password.trim()
 			};
-			/*snatch("http://localhost:3000/login",'post',data,'application/x-www-form-urlencoded').then(res=>{
+			snatch("http://localhost:3000/login",'post',data).then(res=>{
 				console.log(res);
 				if(res.code == 0){
 					this.$router.push('/home');
 				}
-			});*/
-			this.$router.push('/home');
+			});
 		}
 	}
 };

@@ -24,8 +24,8 @@ export function snatch(url, method, data, contentType) {
         } else {
             config.headers = {
 
-//		            cwithCredentials: true,
-//		            redentials: "include"
+		            cwithCredentials: true,
+		            redentials: "include",
                 "Content-Type": contentType || "application/x-www-form-urlencoded",
 //                "X-Requested-With": "XMLHttpRequest",
 //                "x-csrf-token": csrfToken

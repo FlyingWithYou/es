@@ -16,6 +16,7 @@ const bannerRoutes = require('./src/routes/banner');
 const login2 = require('./src/login/login2');
 const { show, showAll, add}  = require('./src/controller/product');
 const pageNotFound = require('./src/404/not-found');
+const cors = require('koa-cors');
 
 const app = new Koa();
 const router = new Router();
@@ -26,7 +27,7 @@ const PORT = 3000;
 // 	encoding: 'utf-8',
 // 	multipar: true
 // }));
-
+app.use(cors());
 app.use(serve(path.join(__dirname, '/public')));
 async function responseTime(ctx, next) {
 	const start = Date.now();
