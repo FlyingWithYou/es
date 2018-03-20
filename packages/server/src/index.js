@@ -11,22 +11,18 @@ const auth = require('koa-basic-auth');
 const  serve = require('koa-static');
 const JSONStream = require('streaming-json-stringify');
 const koaBody = require('koa-body');
-const login = require('./src/login');
-const bannerRoutes = require('./src/routes/banner');
-const login2 = require('./src/login/login2');
-const { show, showAll, add}  = require('./src/controller/product');
-const pageNotFound = require('./src/404/not-found');
+const login = require('./login');
+const bannerRoutes = require('./routes/banner');
+const menuRoutes = require('./routes/menu');
+const login2 = require('./login/login2');
+const { show, showAll, add}  = require('./controller/product');
+const pageNotFound = require('./404/not-found');
 const cors = require('koa-cors');
-
 const app = new Koa();
 const router = new Router();
+const PORT = process.env.PORT || 3000;
 
-const PORT = 3000;
 
-// app.use(koaBody({
-// 	encoding: 'utf-8',
-// 	multipar: true
-// }));
 app.use(cors());
 app.use(serve(path.join(__dirname, '/public')));
 async function responseTime(ctx, next) {
@@ -83,7 +79,7 @@ app.use(async function(ctx, next) {
 
 // app.use(async ctx => ctx.body = 'secrect');
 
-app.keys = ['session key', 'csrf example'];
+
 
 // app.use(session(app));
  app.use(koaBody());
@@ -93,12 +89,13 @@ app.keys = ['session key', 'csrf example'];
 // 	  .post('/post', post);
 
 app.use(bannerRoutes.routes());
+app.use(menuRoutes.routes());
 // async function token(ctx, next) {
 // 	ctx.body = ctx.csrf;
 // 	await next();
 // }		
 
-async function post(ctx,next) {
+/* async function post(ctx,next) {
 	ctx.body = {ok: true};
 	await next();
 }
@@ -123,87 +120,80 @@ app.use(async function(ctx, next) {
 	ctx.session.message.push(message);
 	ctx.status = 204;
 });
-
+ */
 router.get('/', (ctx, next) => {
 	ctx.body = "Hello koa-router";
 });
 
 router.post("/login",  login);
-
 router.get('/login', login2);
-// route.all('/banner', banner);
 
-router.get('/index.js', streamFile);
-router.get('/product', showAll);
-router.get('/product/:id', show);
-router.post('/product', add);
+// router.get('/index.js', streamFile);
 
-router.get('/jss', streamJSON);
+// router.get('/jss', streamJSON);
 
-router.post('/upload', koaBody({ multipart: true}), uploadFile);
+// router.post('/upload', koaBody({ multipart: true}), uploadFile);
 
-async function uploadFile(ctx, next) {
-	if('POST' != ctx.method) {
-		return await next();
-	}
+// async function uploadFile(ctx, next) {
+// 	if('POST' != ctx.method) {
+// 		return await next();
+// 	}
 
-	const tmpdir = path.join(os.tmpdir(), uid());
-	await fs.mkdir(tmpdir);
-	const filePaths  = [];
-	const files = ctx.request.body.files || {};
+// 	const tmpdir = path.join(os.tmpdir(), uid());
+// 	await fs.mkdir(tmpdir);
+// 	const filePaths  = [];
+// 	const files = ctx.request.body.files || {};
 
-	for(let key in files) {
-		const file = files[key];
-		const filePath = path.join(tmpdir, file.name);
-		const reader = fs.createReadStream(file.path);
-		const  writer = fs.createWriteStream(filePath);
-		reader.pipe(writer);
-		filePaths.push(filePath);
-		console.log("uploading %s -> %s", file.name, writer.path);
-	}
-	ctx.body = filePaths;
-	await next();
-}
+// 	for(let key in files) {
+// 		const file = files[key];
+// 		const filePath = path.join(tmpdir, file.name);
+// 		const reader = fs.createReadStream(file.path);
+// 		const  writer = fs.createWriteStream(filePath);
+// 		reader.pipe(writer);
+// 		filePaths.push(filePath);
+// 		console.log("uploading %s -> %s", file.name, writer.path);
+// 	}
+// 	ctx.body = filePaths;
+// 	await next();
+// }
 
-function uid() {
-	return Math.random().toString(36).slice(2);
-}
+// function uid() {
+// 	return Math.random().toString(36).slice(2);
+// }
 
-// console.log(product, ">>>>>>>>>>>>>>>>>>>");
+// async function streamFile (ctx, next) {
+// 	const fpath = path.join(__dirname, ctx.path);
+// 	const fstat = await fs.stat(fpath);
+// 	if(fstat.isFile()) {
+// 		ctx.type = path.extname(fpath);
+// 		ctx.body = fs.createReadStream(fpath);
+// 	}
+// 	await next();
+// }
 
-async function streamFile (ctx, next) {
-	const fpath = path.join(__dirname, ctx.path);
-	const fstat = await fs.stat(fpath);
-	if(fstat.isFile()) {
-		ctx.type = path.extname(fpath);
-		ctx.body = fs.createReadStream(fpath);
-	}
-	await next();
-}
+// async function streamJSON(ctx, next) {
+// 	ctx.type = 'json';
+// 	const stream = ctx.body = JSONStream();
 
-async function streamJSON(ctx, next) {
-	ctx.type = 'json';
-	const stream = ctx.body = JSONStream();
+// 	stream.on('error', ctx.onerror);
 
-	stream.on('error', ctx.onerror);
+// 	setImmediate(function() {
+// 		stream.write({
+// 			id: 1
+// 		});
+// 	});
 
-	setImmediate(function() {
-		stream.write({
-			id: 1
-		});
-	});
+// 	setImmediate(function () {
+// 		stream.write({
+// 			id: 2
+// 		});
+// 	});
 
-	setImmediate(function () {
-		stream.write({
-			id: 2
-		});
-	});
+// 	setImmediate(function () {
+// 		stream.end();
+// 	});
 
-	setImmediate(function () {
-		stream.end();
-	});
-
-}
+// }
 
 app.use(router.routes());
 

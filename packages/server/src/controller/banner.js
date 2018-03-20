@@ -8,24 +8,18 @@ async function showAll(ctx, next) {
 async function add(ctx, next) {
     const { color,
         href,
-        html,
-        img,
-        imgRetina,
+        imgUrl,
         name,
         theme,
-        useHtml,
         order
      } = ctx.request.body;
 
     let banner = {
         color,
         href,
-        html,
-        img,
-        imgRetina,
+        imgUrl,
         name, 
         theme,
-        useHtml,
         order
     };
     const rbanner = await bannerModel.addBanner(banner);

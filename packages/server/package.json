@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node-dev index.js",
+    "start": "set PORT=8888 && node-dev  src/index.js",
+    "prod": "set PORT=8080 && pm2 start src/index.js  --name es-server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,14 +20,14 @@
   },
   "homepage": "https://github.com/FlyingWithYou/es-server#readme",
   "dependencies": {
-    "fs-promise": "^2.0.3",
     "koa": "^2.4.1",
     "koa-basic-auth": "^2.0.0",
     "koa-better-body": "^3.0.4",
     "koa-body": "^2.5.0",
-    "koa-compose": "^4.0.0",
-    "koa-csrf": "^3.0.6",
     "koa-body-parsers": "^3.1.0",
+    "koa-compose": "^4.0.0",
+    "koa-cors": "0.0.16",
+    "koa-csrf": "^3.0.6",
     "koa-router": "^7.3.0",
     "koa-session": "^5.8.1",
     "koa-static": "^4.0.2",
@@ -37,7 +38,9 @@
     "streaming-json-stringify": "^3.1.0"
   },
   "devDependencies": {
-    "mocha": "^5.0.2",
+    "chai": "^4.1.2",
+    "fs-promise": "^2.0.3",
+    "mocha": "^5.0.4",
     "should": "^13.2.1",
     "supertest": "^3.0.0"
   }

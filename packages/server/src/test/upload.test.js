@@ -60,7 +60,6 @@ describe('Multipart Files', function() {
             const files = res.body;
             files.should.have.length(2);
             fs.stat(files[0], function(err) {
-                console.log(files, "<<<<<<<<<<<<<<<<<<<");
                 if(err) return done(err);
                 fs.stat(files[1], done);
             });
