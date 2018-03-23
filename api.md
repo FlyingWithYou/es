@@ -52,7 +52,7 @@ url: /menu
 method: get 
 
 | 字段 | 类型 | 描述 |  
-|: --- :|: ---- :|: ----|  
+|:---:|:----:|:----|  
 | id    |  int   | 菜单项id |  
 | parentId | int | 父菜单项id |  
 | level | int | 菜单项层级 |  
