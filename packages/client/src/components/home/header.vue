@@ -68,7 +68,7 @@
 			        <CarouselItem v-for="list in bannerList">
 			            <div class="single">
 							<a href="#">
-								<img :src="list.img" alt="" />
+								<img :src="list.imgUrl" alt="" />
 							</a>
 						</div>
 			        </CarouselItem>
@@ -101,7 +101,7 @@
 		},
 		methods:{
 			getBanner: function(){
-				snatch("http://localhost:3000/banner",'get').then(res=>{
+				snatch("banner",'get').then(res=>{
 					console.log(res);
 					this.bannerList = res;
 				});

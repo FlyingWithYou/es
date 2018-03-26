@@ -58,6 +58,12 @@ module.exports = {
 	  	compress: true,
 	  	port: 10010,
 	  	open: true,
+	  	proxy: {
+            "/": {
+                target: 'http://localhost:8888',
+                secure: false
+            }
+       },
 	},
 	plugins: [ 
 		new CleanWebpackPlugin(["dist"]),

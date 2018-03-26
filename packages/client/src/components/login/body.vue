@@ -95,7 +95,7 @@ export default {
 				name: this.accout.trim(),
 				pwd: this.password.trim()
 			};
-			snatch("http://localhost:3000/login",'post',data).then(res=>{
+			snatch("login",'post',data).then(res=>{
 				console.log(res);
 				if(res.code == 0){
 					this.$router.push('/home');
