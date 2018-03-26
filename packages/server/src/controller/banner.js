@@ -6,6 +6,8 @@ async function showAll(ctx, next) {
 }
 
 async function add(ctx, next) {
+
+    console.error(JSON.stringify(ctx.request.body), ">>>>>>>>>>>>>>>");
     const { color,
         href,
         imgUrl,
