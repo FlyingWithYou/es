@@ -13,8 +13,8 @@ async function show(ctx, next) {
 }
 
 async function add(ctx, next) {
-	const { name, price, description } = ctx.request.body;
-	const product = await productService.add(name, price, description)
+	const { href,name, categoryId, price, description } = ctx.request.body;
+	const product = await productService.add(href, name, categoryId, price, description)
 }
 
 module.exports = {

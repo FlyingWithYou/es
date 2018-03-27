@@ -56,4 +56,16 @@ method: get
 | id    |  int   | 菜单项id |  
 | parentId | int | 父菜单项id |  
 | level | int | 菜单项层级 |  
-| name | string | 菜单项名称 |    
+| name | string | 菜单项名称 |
+| href | string | 链接 |
+| product | array | 产品列表 |
+
+product说明
+
+| 字段 | 类型 | 描述 |
+|:---:|:---:|:-----|
+| id  | int | 产品id |
+| name | string | 产品名称 |
+| price | double | 产品价格 |
+| imageUrl | string | 产品链接 |
+| description | string | 产品描述 |

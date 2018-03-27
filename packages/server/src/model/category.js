@@ -7,6 +7,12 @@ const Category = sequelize.define('category', {
     },
     name: Sequelize.STRING,
     parentId: Sequelize.INTEGER,
+    href: {
+      type: Sequelize.STRING,
+      validate: {
+          isUrl: true
+      }
+    },
     level: Sequelize.INTEGER
 }, {
     freezeTableName: true,
@@ -14,9 +20,7 @@ const Category = sequelize.define('category', {
 });
 
 Category.findAllCategory = async function () {
-return await Category.findAll({
-    order: ["id"]
-});
+    return  await Category.findAll({order: ["id"]});
 }
 
 module.exports = Category;
