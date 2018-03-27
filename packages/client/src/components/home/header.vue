@@ -64,8 +64,9 @@
 			        :radius-dot="setting.radiusDot"
 			        :trigger="setting.trigger"
 			        :arrow="setting.arrow"
+			        :height="setting.height"
 			        class="banner-slider">
-			        <CarouselItem v-for="list in bannerList">
+			        <CarouselItem v-for="(list, index) in bannerList" :key="index">
 			            <div class="single">
 							<a href="#">
 								<img :src="list.imgUrl" alt="" />
@@ -74,12 +75,44 @@
 			        </CarouselItem>
 			   </Carousel>
 			</div>
+			<ul class="home-category">
+				<li class="home-category-item" v-for="(nav, index) in navBar" v-on:mouseenter="showSecondLevel(index)" @mouseleave="hideSecondLevel(index)">
+					<a href="#" class="home-category-link">{{nav.name}}</a>
+					<div class="home-category-child" v-show="nav.secondVisible">
+						<div class="home-category-child-list">
+							<div class="single" v-for="item in nav.children">
+								<div class="top">
+									<a href="#">{{item.name}}<Icon type="ios-arrow-right"></Icon></a>
+								</div>
+								<div class="bottom">
+									<a href="#">
+										<img src="https://fms.res.meizu.com/dms/2018/03/05/2f25a5fa-1f9c-4c52-841a-f3aedffc54de.jpg" alt="" />
+										<div>MLIVING东京asda阿萨的</div>
+									</a>
+									<a href="#">
+										<img src="https://fms.res.meizu.com/dms/2018/03/05/2f25a5fa-1f9c-4c52-841a-f3aedffc54de.jpg" alt="" />
+										<div>MLIVING东京asda阿萨的</div>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</li>
+				<!--<li class="home-category-item"><a href="#" class="home-category-link">智能设备</a></li>
+				<li class="home-category-item"><a href="#" class="home-category-link">智能穿戴</a></li>
+				<li class="home-category-item"><a href="#" class="home-category-link">游戏设备</a></li>
+				<li class="home-category-item"><a href="#" class="home-category-link">数码影音</a></li>
+				<li class="home-category-item"><a href="#" class="home-category-link">手机配件</a></li>
+				<li class="home-category-item"><a href="#" class="home-category-link">移动存储</a></li>
+				<li class="home-category-item"><a href="#" class="home-category-link">生活周边</a></li>-->
+			</ul>
 		</div>
 	</div>
 </template>
 
 <script>
 	import {snatch} from "Utils/networker.js";
+	import {createTree} from "Utils/tree.js";
 	export default {
 		name: "header-bar",
 		data () {
@@ -91,21 +124,40 @@
                     dots: 'inside',
                     radiusDot: true,
                     trigger: 'click',
-                    arrow: 'always'
+                    arrow: 'always',
+                    height: 480
                 },
                 bannerList: [],
+                navBar: [],
 			};
 		},
 		mounted:function(){
 			this.getBanner();
+			this.getNavigationBar();
 		},
 		methods:{
-			getBanner: function(){
+			getBanner(){
 				snatch("banner",'get').then(res=>{
 					console.log(res);
 					this.bannerList = res;
 				});
-			}
+			},
+			getNavigationBar(){
+				snatch("menu",'get').then(res=>{
+					var arr = createTree(res,'0');
+					console.log(arr);
+					for(var i = 0;i < arr.length;i++){
+						arr[i].secondVisible = false;
+					}
+					this.navBar = arr;
+				});
+			},
+			showSecondLevel(index){
+				this.navBar[index].secondVisible = true; 
+			},
+			hideSecondLevel(index){
+				this.navBar[index].secondVisible = false; 
+			},
 		}
 	};
 </script>
@@ -228,12 +280,131 @@
 			}
 		}
 		.banner{
+			position: relative;
 			.banner-list{
 				.banner-slider{
+					width: 100%;
+    				height: 480px;
 					.left{
 					    left: 570px;
 					}
+					.single{
+						width: 100%;
+						height: 100%;
+						a{
+							width: 100%;
+							height: 100%;
+							img{
+								height: 100%;
+								width: 100%;
+							}
+						}
+					}
 				}
+			}
+			.home-category{
+				background-color: rgba(248,247,247,.8);
+				position: absolute;
+			    left: 50%;
+			    top: 0;
+			    margin-left: -620px;
+			    height: 480px;
+			    width: 244px;
+			    background-color: rgba(248,247,247,.8);
+			    background-color: #f8f7f7\9;
+			    z-index: 2;
+			    padding-top: 12px;
+			    .home-category-item{
+			    	height: 57px;
+				    line-height: 57px;
+				    background-color: transparent;
+				    transition: all .5s;
+				    .home-category-link{
+				    	display: block;
+					    color: #333;
+					    padding: 0 30px;
+					    height: 100%;
+					    font-size: 14px;
+				    }
+				    .home-category-child{
+				    	position: absolute;
+					    height: 480px;
+					    left: 244px;
+					    top: 0px;
+					    background-color: #fff;
+					    white-space: nowrap;
+					    font-size: 14px;
+					    box-shadow: 1px 1px 2px rgba(0,0,0,.1);
+					    .home-category-child-list{
+					    	display: inline-block;
+						    vertical-align: top;
+						    margin: 15px 28px 15px 25px;
+						    width: 320px;
+						    height: 450px;
+						    .single{
+						    	.top{
+						    		a{
+						    			display: inline-block;
+						    			position: relative;
+									    width: 100%;
+									    font-size: 14px;
+									    border-bottom: 1px solid #F5F5F5;
+									    margin-top: 4px;
+									    height: 40px;
+									    line-height: 40px;
+									    color: #333;
+									    margin-bottom: 16px;
+									    transition: all .5s;
+									    overflow: hidden;
+									    .ivu-icon{
+									    	position: absolute;
+    										right: 10px;
+    										top: 14px;
+									    }
+						    		}
+						    		a:hover{
+						    			color: #00c3f5;
+						    		}
+						    	}
+						    	.bottom{
+						    		display: flex;
+						    		flex-wrap: wrap;
+						    		a{
+						    			font-size: 12px;
+									    height: 40px;
+									    width: 150px;
+									    line-height: 40px;
+									    color: #333;
+									    margin-bottom: 16px;
+									    transition: all .5s;
+									    overflow: hidden;
+						    			display: block;
+						    			img{
+						    				float: left;
+										    width: 40px;
+										    height: 40px
+						    			}
+						    			div{
+						    				float: left;
+										    margin-left: 6px;
+										    width: 100px;
+										    overflow: hidden;
+										    white-space: nowrap;
+										    word-break: keep-all;
+										    text-overflow: ellipsis;
+						    			}
+						    			div:hover{
+						    				color: #00c3f5;
+						    			}
+						    		}
+						    	}
+						    }
+					    }
+				    }
+			    }
+			    .home-category-item:hover{
+			    	background: #fff;
+			    }
 			}
 		}
 		
