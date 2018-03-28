@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "set PORT=8888 && node-dev  src/index.js",
-    "prod": "set PORT=8080 && pm2 start src/index.js  --name es-server",
+    "prod": "cross-env PORT=8080 node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -34,6 +34,7 @@
     "mysql": "^2.15.0",
     "mysql2": "^1.5.2",
     "raw-body": "^2.3.2",
+    "cross-env":"^5.1.4",	
     "sequelize": "^4.35.2",
     "streaming-json-stringify": "^3.1.0"
   },
