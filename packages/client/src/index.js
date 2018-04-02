@@ -1,4 +1,6 @@
 import Vue from "vue";
+import Vuex from 'vuex'
+import store from "Store"
 import VueRouter from "vue-router";
 import App from "./App";
 import Login from "Components/login";
@@ -8,6 +10,7 @@ import 'iview/dist/styles/iview.css';
 
 Vue.use(VueRouter);
 Vue.use(iView);
+Vue.use(Vuex);
 
 const routes = [
 	{ path: "/", name: "app", component: App },
@@ -22,5 +25,6 @@ const router = new VueRouter({
 
 
 new Vue({
-	router
+	router,
+	store
 }).$mount("#app");

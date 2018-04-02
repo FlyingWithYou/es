@@ -36,7 +36,7 @@
 				</ul>
 				<ul class="header-service">
 					<li class="">
-						<input class="autocomlete-input" placeholder="魅蓝 S6">
+						<input class="autocomlete-input" v-model="value5" placeholder="魅蓝 S6" @input="inputChange(value5)">
 						<Icon type="ios-search" size="18" style="cursor: pointer;"></Icon>
 					</li>
 					<li class="header-login-img">
@@ -111,6 +111,8 @@
 </template>
 
 <script>
+	import { mapGetters } from 'vuex'
+  	import { mapActions } from 'vuex'
 	import {snatch} from "Utils/networker.js";
 	import {createTree} from "Utils/tree.js";
 	export default {
@@ -129,13 +131,18 @@
                 },
                 bannerList: [],
                 navBar: [],
+                value5: '',
 			};
 		},
 		mounted:function(){
 			this.getBanner();
 			this.getNavigationBar();
+			//console.log(this.$store,'store');
 		},
 		methods:{
+			...mapActions([
+		      	'increment', // 将 `this.increment()` 映射为 `this.$store.dispatch('increment')`
+		    ]),
 			getBanner(){
 				snatch("banner",'get').then(res=>{
 					console.log(res);
@@ -158,13 +165,23 @@
 			hideSecondLevel(index){
 				this.navBar[index].secondVisible = false; 
 			},
+			inputChange(value){
+				console.log(value,'value');
+				//this.$store.state.value5 = value;
+				//console.log(this.$store);
+				/*this.$store.dispatch({
+				  type: 'increment',
+				  value: value
+				})*/
+				console.log(this.$store,'666999');
+				this.increment(value);
+			}
 		}
 	};
 </script>
 
 <style scoped lang="less">
 	.container{
-		height: 80px;
 		.content{
 			width: 1240px;
 			height: 80px;

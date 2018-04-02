@@ -2,6 +2,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const BableObjectSpread = require('babel-plugin-transform-object-rest-spread');
 
 module.exports = {
 	entry: path.resolve(__dirname, "src/index.js"),
@@ -17,7 +18,8 @@ module.exports = {
 			Src: path.resolve(__dirname, "src"),
 			Components: path.resolve(__dirname, "src/components"),
 			Utils: path.resolve(__dirname, "src/utils"),
-			Resource: path.resolve(__dirname, "src/resource")
+			Resource: path.resolve(__dirname, "src/resource"),
+			Store: path.resolve(__dirname, "src/store"),
 		}
 	},
 	module: {
@@ -32,11 +34,15 @@ module.exports = {
 						camelCase: true
 					},
 					loaders: {
-						js: 'babel-loader',
 						css: "style-loader!css-loader!postcss-loader!less-loader"
 					}
 				}
 			},
+			{
+				test: /\.js$/,
+				loader: 'babel-loader'
+			},
+			
 		{ 
 			test: /\.(png|svg|jpg|gif)$/, 
 			use: [ "file-loader"]
@@ -60,7 +66,7 @@ module.exports = {
 	  	open: true,
 	  	proxy: {
             "/": {
-                target: 'http://localhost:8888',
+                target: 'http://47.100.53.48:8080',
                 secure: false
             }
        },

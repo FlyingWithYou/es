@@ -7,6 +7,7 @@
 	       </a>
 		</div>
 		<header-bar></header-bar>
+		<content-bar></content-bar>
 	</div>
 	
 </template>
@@ -14,6 +15,7 @@
 <script>
 	import {snatch} from "Utils/networker.js";
 	import HeaderBar from "./header";
+	import ContentBar from "./content";
 	export default {
 		name: "home",
 		data () {
@@ -23,6 +25,7 @@
 		},
 		components: {
 			HeaderBar,
+			ContentBar,
 		},
 		mounted:function(){
 			
